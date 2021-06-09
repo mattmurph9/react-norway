@@ -1,13 +1,21 @@
 import "./App.css";
 import BarbersList from "./components/BarbersList";
+import CreateBarberForm from "./components/CreateBarberForm";
 import AddClientToBarberForm from "./components/AddClientToBarberForm";
-import { useAddClientToBarberMutation, useCreateClientMutation, useGetBarbersQuery } from "./codegen/hooks";
+import { useAddClientToBarberMutation, useCreateBarberMutation, useCreateClientMutation, useGetBarbersQuery } from "./codegen/hooks";
 
 function App() {
   const { data, loading, error, refetch } = useGetBarbersQuery();
 
+  const [createBarberMutation] = useCreateBarberMutation();
+
   const [createClientMutation] = useCreateClientMutation();
   const [addClientToBarberMutation] = useAddClientToBarberMutation();
+
+  const handleCreateBarberClick = async (name: string) => {
+    await createBarberMutation({ variables: { name } });
+    refetch();
+  }
 
   const handleAddClientClick = async (
     barberName: string,
@@ -34,6 +42,7 @@ function App() {
       </header>
       <div className="content">
         <BarbersList barbers={data?.barbers || []} />
+        <CreateBarberForm onSubmit={handleCreateBarberClick} />
         <AddClientToBarberForm onSubmit={handleAddClientClick} />
       </div>
     </div>
