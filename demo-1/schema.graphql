@@ -1,0 +1,9 @@
+type Barber {
+  name: String!
+  clients: [Client!]!
+}
+
+type Client {
+  name: String!
+  needsHaircut: Boolean!
+}

@@ -1,0 +1,22 @@
+overwrite: true
+generates:
+  src/codegen/types.ts:
+    overwrite: true
+    schema:
+      - http://localhost:4001/graphql:
+    documents: "src/codegen/operations.graphql"
+    plugins:
+      - typescript
+      - typescript-operations
+  src/codegen/hooks.tsx:
+    overwrite: true
+    preset: import-types
+    presetConfig:
+      typesPath: ./types
+    schema:
+      - http://localhost:4001/graphql:
+    documents: "src/codegen/operations.graphql"
+    config:
+      withHooks: true
+    plugins:
+      - typescript-react-apollo

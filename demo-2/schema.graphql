@@ -1,0 +1,9 @@
+type Barber {
+  name: String!
+  clients: [Client!]! @relationship(type: "HAS_CLIENT", direction: OUT)
+}
+
+type Client {
+  name: String!
+  needsHaircut: Boolean!
+}

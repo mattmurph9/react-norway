@@ -1,0 +1,14 @@
+type Barber {
+  name: String!
+  tools: [Tool!]!
+}
+
+type Client {
+  name: String!
+  needsHaircut: Boolean!
+}
+
+type Tool {
+  model: String!
+  purpose: String!
+}

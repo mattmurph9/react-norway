@@ -1,0 +1,37 @@
+mutation CreateBarber($name: String!) {
+  createBarbers(input: [{ name: $name }]) {
+    barbers {
+      name
+    }
+  }
+}
+
+mutation CreateClient($name: String!) {
+  createClients(input: [{ name: $name, needsHaircut: true }]) {
+    clients {
+      name
+      needsHaircut
+    }
+  }
+}
+
+query GetBarbers {
+  barbers {
+    name
+    clients {
+      name
+      needsHaircut
+    }
+  }
+}
+
+mutation AddClientToBarber($barberName: String!, $clientName: String!) {
+  updateBarbers(
+    where: { name: $barberName }
+    connect: { clients: [{ where: { name: $clientName } }] }
+  ) {
+    barbers {
+      name
+    }
+  }
+}
