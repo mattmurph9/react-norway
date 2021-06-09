@@ -3,7 +3,7 @@ generates:
   src/codegen/types.ts:
     overwrite: true
     schema:
-      - http://localhost:4001/graphql:
+      - http://localhost:4000/graphql:
     documents: "src/codegen/operations.graphql"
     plugins:
       - typescript
@@ -14,7 +14,7 @@ generates:
     presetConfig:
       typesPath: ./types
     schema:
-      - http://localhost:4001/graphql:
+      - http://localhost:4000/graphql:
     documents: "src/codegen/operations.graphql"
     config:
       withHooks: true
